@@ -1,0 +1,289 @@
+TAGS = exports.drp_tag:getTags()
+
+PAGES = {
+	"Mağaza",
+	"Alım Geçmişi",
+}
+
+CATEGORIES = {
+	"Kişisel Özellikler",
+	"Araç Özellikleri",
+	"Özel Araçlar",
+	"Silahlar",
+	"Para Çevirme",
+	"Etiketler",
+}
+
+PERSONAL_FEATURES = {
+	{ "😂", "İsim Değişikliği", { 50, 185, 222 }, 50, 1 },
+	{ "", "Kullanıcı Adı Değişikliği", { 234, 163, 83 }, 50, 2 },
+	{ "", "VIP", { 231, 202, 31 }, 0, 3 },
+	{ "", "Karakter Slotu (+1)", { 45, 218, 157 }, 25, "market.buyCharacterSlot", 1 },
+	{ "", "Araç Slotu (+1)", { 45, 218, 157 }, 25, "market.buyVehicleSlot", 1 },
+	{ "", "Mülk Slotu (+1)", { 45, 218, 157 }, 25, "market.buyPropertySlot", 1 },
+	{ "", "Tarihçe Sildirme", { 232, 113, 114 }, 5, "market.buyRemoveHistory", 1 },
+	{ "", "Özel Dupont", { 116, 192, 252 }, 200, 4 },
+	{
+		"",
+		"Hapis Açtırma",
+		{ 232, 113, 114 },
+		function()
+			local adminJailTime = getElementData(localPlayer, "admin_jail_time") or 0
+			return calculateJailPrice(adminJailTime)
+		end,
+		"market.buyUnjail",
+		1,
+	},
+	{ "", "Sınırsız Envanter Arttırıcı", { 231, 202, 31 }, 200, "market.buyUnlimitedInventoryBooster", 1 },
+}
+
+VEHICLE_FEATURES = {
+	{ "", "Plaka Değişikliği", { 255, 212, 59 }, 50, 1 },
+	{ "", "Cam Filmi", { 255, 212, 59 }, 30, 2 },
+	{ "", "Neon", { 255, 212, 59 }, 80, "neon.showList", 2 },
+	{ "", "Kaplama", { 255, 212, 59 }, 200, 3 },
+	{ "", "Kelebek Kapı", { 255, 212, 59 }, 50, 4 },
+	{ "", "Plaka Tasarımı", { 255, 212, 59 }, 50, "plateDesign.showList", 2 },
+	{ "", "Yazılım (Hand)", { 255, 212, 59 }, 0, 5 },
+}
+
+PRIVATE_VEHICLES = {
+{ "Mercedes-Benz Maybach S650", 516, 1047, 500 },
+	{ "Helikopter (Maverick)", 487, 563, 500 },
+	{ "Cadillac Escalade", 458, 1031, 450 },
+	{ "Range Rover Sport SVR", 479, 911, 400 },
+	{ "Volkswagen Passat B8", 540, 609, 400 },
+	{ "Audi A7", 546, 304, 400 },
+	{ "BMW M5 F90", 550, 315, 350 },
+	{"Land Rover Range Rover", 490, 1110, 250},
+	{ "Chevrolet Corvette Z06", 559, 1020, 350 },
+	{ "Porsche 911", 474, 203, 300 },
+	{ "BMW M4", 412, 1112, 250 },
+	{ "Dodge Viper SRT-10", 429, 551, 300 },
+	{ "Tofaş Doğan SLX", 561, 1097, 300 },
+	{ "Lamborghini Aventedor", 502, 1029, 300 },
+	{ "McLaren 570GT", 503, 1030, 250 },
+	{ "Nissan GT-R SpecV", 411, 282, 200 },
+	{ "Ford Mustang Ecoboost 2.3L", 494, 1028, 150 },
+	{ "BMW i8", 527, 1106, 150 },	
+
+}
+
+PRIVATE_WEAPONS = {
+	{ "M4", 356, 31, 350 },
+	{ "AK-47", 355, 30, 200 },
+	{ "MP5", 353, 29, 150 },
+	{ "Shotgun", 349, 25, 180 },
+	{ "Tec-9", 372, 32, 140 },
+	{ "Uzi", 352, 28, 125 },
+	{ "Deagle", 348, 24, 100 },
+	{ "Colt-45", 346, 22, 80 },
+}
+
+VIPS = {
+	Prices = {
+		2,
+		3,
+		4,
+		5,
+	},
+	Enums = {
+		VIP1 = 1,
+		VIP2 = 2,
+		VIP3 = 3,
+		VIP4 = 4,
+	},
+}
+
+HANDLINGS = {
+	Values = {
+		[1] = { "mass", mass },
+		[2] = { "turnMass", turnMass },
+		[3] = { "dragCoeff", dragCoeff },
+		[4] = { "centerOfMass", centerOfMass, true },
+		[5] = { "percentSubmerged", percentSubmerged },
+		[6] = { "tractionMultiplier", tractionMultiplier },
+		[7] = { "tractionLoss", tractionLoss },
+		[8] = { "tractionBias", tractionBias },
+		[9] = { "numberOfGears", numberOfGears },
+		[10] = { "maxVelocity", maxVelocity },
+		[11] = { "engineAcceleration", engineAcceleration },
+		[12] = { "engineInertia", engineInertia },
+		[13] = { "driveType", driveType, false, true },
+		[14] = { "engineType", engineType, false, true },
+		[14] = { "engineType", engineType, false, true },
+		[15] = { "brakeDeceleration", brakeDeceleration },
+		[16] = { "brakeBias", brakeBias },
+		[17] = { "ABS", ABS },
+		[18] = { "steeringLock", steeringLock },
+		[19] = { "suspensionForceLevel", suspensionForceLevel },
+		[20] = { "suspensionDamping", suspensionDamping },
+		[21] = { "suspensionHighSpeedDamping", suspensionHighSpeedDamping },
+		[22] = { "suspensionUpperLimit", suspensionUpperLimit },
+		[23] = { "suspensionLowerLimit", suspensionLowerLimit },
+		[24] = { "suspensionFrontRearBias", suspensionFrontRearBias },
+		[25] = { "suspensionAntiDiveMultiplier", suspensionAntiDiveMultiplier },
+		[26] = { "seatOffsetDistance", seatOffsetDistance },
+		[27] = { "collisionDamageMultiplier", collisionDamageMultiplier },
+		[28] = { "monetary", monetary },
+		[29] = { "modelFlags", modelFlags },
+		[30] = { "handlingFlags", handlingFlags },
+		[31] = { "headLight", headLight, false, true },
+		[32] = { "tailLight", tailLight, false, true },
+		[33] = { "animGroup", animGroup },
+	},
+	Items = {
+		{
+			"Düşük Düzey Yazılım (220 KM/H)",
+			150,
+			{
+				ABS = false,
+				animGroup = 0,
+				brakeBias = 0.5,
+				brakeDeceleration = 40,
+				centerOfMass = { 0, 0, -0.5 },
+				collisionDamageMultiplier = 0.54000002145767,
+				dragCoeff = 2,
+				driveType = "awd",
+				engineAcceleration = 80,
+				engineInertia = 100,
+				engineType = "petrol",
+				handlingFlags = 2,
+				headLight = "long",
+				mass = 3000,
+				maxVelocity = 185,
+				modelFlags = 0,
+				monetary = 19000,
+				numberOfGears = 4,
+				percentSubmerged = 70,
+				seatOffsetDistance = 0.25999999046326,
+				steeringLock = 30,
+				suspensionAntiDiveMultiplier = 0,
+				suspensionDamping = 0.12999999523163,
+				suspensionForceLevel = 1.2000000476837,
+				suspensionFrontRearBias = 0.5,
+				suspensionHighSpeedDamping = 0,
+				suspensionLowerLimit = -0.10000000149012,
+				suspensionUpperLimit = 0.31999999284744,
+				tractionBias = 0.44999998807907,
+				tractionLoss = 0.80000001192093,
+				tractionMultiplier = 1.8999999761581,
+				turnMass = 3000,
+			},
+		},
+		{
+			"Orta Düzey Yazılım (238 KM/H)",
+			300,
+			{
+				ABS = false,
+				animGroup = 0,
+				brakeBias = 0.5,
+				brakeDeceleration = 40,
+				centerOfMass = { 0, 0, -0.5 },
+				collisionDamageMultiplier = 0.54000002145767,
+				dragCoeff = 2,
+				driveType = "awd",
+				engineAcceleration = 80,
+				engineInertia = 100,
+				engineType = "petrol",
+				handlingFlags = 2,
+				headLight = "long",
+				mass = 3000,
+				maxVelocity = 200,
+				modelFlags = 0,
+				monetary = 19000,
+				numberOfGears = 4,
+				percentSubmerged = 70,
+				seatOffsetDistance = 0.25999999046326,
+				steeringLock = 30,
+				suspensionAntiDiveMultiplier = 0,
+				suspensionDamping = 0.12999999523163,
+				suspensionForceLevel = 1.2000000476837,
+				suspensionFrontRearBias = 0.5,
+				suspensionHighSpeedDamping = 0,
+				suspensionLowerLimit = -0.10000000149012,
+				suspensionUpperLimit = 0.31999999284744,
+				tractionBias = 0.44999998807907,
+				tractionLoss = 0.80000001192093,
+				tractionMultiplier = 1.8999999761581,
+				turnMass = 3000,
+			},
+		},
+		{
+			"Yüksek Düzey Yazılım (250 KM/H)",
+			500,
+			{
+				ABS = false,
+				animGroup = 0,
+				brakeBias = 0.5,
+				brakeDeceleration = 40,
+				centerOfMass = { 0, 0, -0.5 },
+				collisionDamageMultiplier = 0.54000002145767,
+				dragCoeff = 2,
+				driveType = "awd",
+				engineAcceleration = 80,
+				engineInertia = 100,
+				engineType = "petrol",
+				handlingFlags = 2,
+				headLight = "long",
+				mass = 3000,
+				maxVelocity = 210,
+				modelFlags = 0,
+				monetary = 19000,
+				numberOfGears = 4,
+				percentSubmerged = 70,
+				seatOffsetDistance = 0.25999999046326,
+				steeringLock = 30,
+				suspensionAntiDiveMultiplier = 0,
+				suspensionDamping = 0.12999999523163,
+				suspensionForceLevel = 1.2000000476837,
+				suspensionFrontRearBias = 0.5,
+				suspensionHighSpeedDamping = 0,
+				suspensionLowerLimit = -0.10000000149012,
+				suspensionUpperLimit = 0.31999999284744,
+				tractionBias = 0.44999998807907,
+				tractionLoss = 0.80000001192093,
+				tractionMultiplier = 1.8999999761581,
+				turnMass = 3000,
+			},
+		},
+	},
+	Enums = {
+		LOW = 1,
+		MEDIUM = 2,
+		HIGH = 3,
+	},
+}
+
+function hasBalance(player, balance)
+	local playerBalance = tonumber(getElementData(player, "balance"))
+	if playerBalance and tonumber(balance) and playerBalance >= tonumber(balance) and tonumber(balance) >= 0 then
+		return true
+	end
+	return false
+end
+
+function isPrivateVehicle(model)
+	for _, vehicle in ipairs(PRIVATE_VEHICLES) do
+		if model == vehicle[2] then
+			return true
+		end
+	end
+	return false
+end
+
+function calculateJailPrice(time)
+	local time = tonumber(time) or 0
+	local price = 0
+
+	if time == 0 then
+		price = 0
+	elseif time > 400 then
+		local timeCalc = (time / (time * 10)) * time
+		price = math.ceil(math.min(200, timeCalc + 50))
+	else
+		price = 50
+	end
+
+	return price
+end

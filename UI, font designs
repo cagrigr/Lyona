@@ -15,8 +15,8 @@ CATEGORIES = {
 }
 
 PERSONAL_FEATURES = {
-	{ "😂", "İsim Değişikliği", { 50, 185, 222 }, 50, 1 },
-	{ "💌", "Kullanıcı Adı Değişikliği", { 234, 163, 83 }, 50, 2 },
+	{ "", "İsim Değişikliği", { 50, 185, 222 }, 50, 1 },
+	{ "", "Kullanıcı Adı Değişikliği", { 234, 163, 83 }, 50, 2 },
 	{ "", "VIP", { 231, 202, 31 }, 0, 3 },
 	{ "", "Karakter Slotu (+1)", { 45, 218, 157 }, 25, "market.buyCharacterSlot", 1 },
 	{ "", "Araç Slotu (+1)", { 45, 218, 157 }, 25, "market.buyVehicleSlot", 1 },
@@ -51,9 +51,9 @@ PRIVATE_VEHICLES = {
 { "Mercedes-Benz Maybach S650", 516, 1047, 500 },
 	{ "Helikopter (Maverick)", 487, 563, 500 },
 	{ "Cadillac Escalade", 458, 1031, 450 },
-	{ "Range Rover Sport SVR", 479, 911, 400 },
-	{ "Volkswagen Passat B8", 540, 609, 400 },
-	{ "Audi A7", 546, 304, 400 },
+	{ "Range Rover Sport SVR", 479, 911, 450 },
+	{ "Volkswagen Passat B8", 540, 609, 600 },
+	{ "Audi A7", 546, 304, 200 },
 	{ "BMW M5 F90", 550, 315, 350 },
 	{"Land Rover Range Rover", 490, 1110, 250},
 	{ "Chevrolet Corvette Z06", 559, 1020, 350 },
@@ -77,7 +77,7 @@ PRIVATE_WEAPONS = {
 	{ "Tec-9", 372, 32, 140 },
 	{ "Uzi", 352, 28, 125 },
 	{ "Deagle", 348, 24, 100 },
-	{ "Colt-45", 346, 22, 80 },
+	{ "Colt-45", 346, 22, 17 },
 }
 
 VIPS = {
